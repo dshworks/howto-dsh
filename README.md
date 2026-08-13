@@ -6,7 +6,7 @@ Verified field notes for [DeepSeek Harness](https://github.com/deepseek-ai/deeps
 
 English first; 中文版 planned. PRs with verified corrections welcome. Not affiliated with DeepSeek.
 
-<sub>AI agents / LLMs: the org index lives at <a href="https://dsh.works/llms.txt">dsh.works/llms.txt</a>.</sub>
+<sub>AI agents / LLMs: the org index lives at <a href="https://dshworks.github.io/llms.txt">dshworks.github.io/llms.txt</a>.</sub>
 
 ## Start in 60 seconds
 
@@ -78,7 +78,7 @@ A theme registration API exists (`packages/client/ui-theme`), but third-party th
 ## Links
 
 - Official: [repo](https://github.com/deepseek-ai/deepseek-harness) · [docs](https://deepseek-harness.github.io/deepseek-harness/en/guide) · [landing](https://www.deepseek.com/harness/en/) · [Cordis paper](https://github.com/cordiverse/paper) · [Discord](https://discord.gg/Ycq5dCaS4)
-- Community: [dsh.works](https://dsh.works) · [awesome-dsh-plugins](https://github.com/dshworks/awesome-dsh-plugins) · [awesome-dsh-themes](https://github.com/dshworks/awesome-dsh-themes)
+- Community: [dshworks.github.io](https://dshworks.github.io) · [awesome-dsh-plugins](https://github.com/dshworks/awesome-dsh-plugins) · [awesome-dsh-themes](https://github.com/dshworks/awesome-dsh-themes)
 - Badge: the official opt-in "powered by dsh" badge lives at `packages/skill/skill-badge` (brand blue `#4D6BFE`; don't restyle it, the asset says so).
 
 ## License
