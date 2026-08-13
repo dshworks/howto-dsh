@@ -29,10 +29,13 @@ Use these notes when a tutorial fails and you suspect the harness changed undern
 
 1. **The `.dsh-plugin` manifest format is dead.** Removed 2026-08-09 with no migration (`.agents/notes/implemented/simplification/2026-08-09-remove-repository-plugin.md`). Any tutorial teaching `.dsh-plugin` or `dsh-plugin-prepare` predates the removal. Current path: `dsh.bundle.patch` in package.json.
 2. **`--patch` paths must be absolute.** A relative path fails (`docs/user/develop/basic/index.md`).
-3. **Git installs execute code on your machine at install time, outside any sandbox.** The docs say so verbatim. Authors must ship a `prepare` script; users must allowlist the build via `allowBuilds` in the profile's `pnpm-workspace.yaml`, and should pin a commit SHA (`docs/user/develop/basic/publish.md`).
+3. **Git installs execute code on your machine at install time, outside any sandbox.** The docs say so verbatim. Authors must ship a `prepare` script; users must allowlist the build via `allowBuilds` in the profile's `pnpm-workspace.yaml`, and should pin a commit SHA (`docs/user/develop/basic/publish.md`). This is not a corner case: of the 18 bundle-format plugins verified by [awesome-dsh-plugins](https://github.com/dshworks/awesome-dsh-plugins) on 2026-08-13, only 4 are on npm; the rest install via `dsh plugin --profile <p> add github:owner/repo` (a `#path:/subdir` suffix reaches monorepo subpackages).
 4. **A patch replaces a row's entire `config`, with no deep-merge.** Overriding one field means restating the row's whole config.
 5. **A package without `dsh.bundle` installs as a plain dependency** and activates no layer; you get a warning, not an error.
 6. **cordis.yml YAML tags:** `!!js` is allowed only under a plugin's `config` and an entry's `disabled`. Never `!js`, never elsewhere.
+7. **Repo descriptions lag migrations; trust the manifest.** Seen in the wild 2026-08-13: `AshesofPlato/whale-girl`'s description still teaches the removed `.dsh-plugin` + config.yaml install while the repo itself already migrated to `dsh.bundle` (its README installs via `dsh plugin add github:...`). Verify against package.json, not the repo card.
+8. **`dsh.plugin.json` is not a harness manifest.** The `omdsh-dev` plugin family ships one in every repo root; nothing in the harness source reads that file. It is third-party metadata for better-sidebar's own tab registry. The real install path is still `dsh.bundle` in package.json.
+9. **npm versions are fragmented across the monorepo.** The harness repo tags `0.1.0-rc.5` while published subpackages disagree (`dsh-agent@0.1.0-rc.6`, `dsh@0.0.1-rc.5`, Cordis at 4.x). Anchor compat claims to the harness release tag, not to whichever dependency version npm shows you.
 
 ## Skills: Claude-compatible
 
