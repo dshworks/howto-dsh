@@ -2,11 +2,29 @@
 
 Verified field notes for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (`dsh`), DeepSeek's agent harness. Traps, skills, hooks, profiles.
 
-**Every claim below was tested against `deepseek-ai/deepseek-harness` at `0.1.0-rc.5` (2026-08-13), with source paths included so you can re-verify.** dsh is a developer preview and the team promises compatibility-breaking changes, so treat everything here as dated, not eternal.
+**Every claim here was tested against a real run, with source paths included so you can re-verify.** Each page states the version and date it was verified against; this README's notes are from `0.1.0-rc.5` (2026-08-13), the pages below from `0.1.0-rc.6` (2026-08-15). dsh is a developer preview and the team promises compatibility-breaking changes, so treat everything here as dated, not eternal.
 
-English first; 中文版 planned. PRs with verified corrections welcome. Not affiliated with DeepSeek.
+PRs with verified corrections welcome. Not affiliated with DeepSeek.
 
 <sub>AI agents / LLMs: the org index lives at <a href="https://dshworks.github.io/llms.txt">dshworks.github.io/llms.txt</a>.</sub>
+
+## Pages
+
+**start/** — one sitting each, run every command.
+
+| | English | 中文 |
+|---|---|---|
+| Your first hour: boot, a real repo with two failing tests, the diff, the trajectory, the bill | [first-hour.md](start/first-hour.md) | [first-hour.zh.md](start/first-hour.zh.md) |
+| Coming from Claude Code or Codex: what carries over, what is renamed, what does not exist | [coming-from-claude-code.md](start/coming-from-claude-code.md) | [coming-from-claude-code.zh.md](start/coming-from-claude-code.zh.md) |
+
+**fix/** — one symptom per page, reproduced before it was written.
+
+| | English | 中文 |
+|---|---|---|
+| Boot fails with a wall of `AggregateError` | [boot-fails-with-a-wall-of-aggregateerror.md](fix/boot-fails-with-a-wall-of-aggregateerror.md) | [.zh.md](fix/boot-fails-with-a-wall-of-aggregateerror.zh.md) |
+| Every `/api/*` request returns 403 | [every-api-call-returns-403.md](fix/every-api-call-returns-403.md) | [.zh.md](fix/every-api-call-returns-403.zh.md) |
+
+`build/` (writing a plugin) and `run/` (running dsh for other people) are the next two tracks. They are empty today; this table is the honest state of the repo.
 
 ## Start in 60 seconds
 
