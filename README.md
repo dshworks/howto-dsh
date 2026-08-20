@@ -6,7 +6,7 @@ Verified field notes for [DeepSeek Harness](https://github.com/deepseek-ai/deeps
 
 PRs with verified corrections welcome. Not affiliated with DeepSeek.
 
-<sub>AI agents / LLMs: the org index lives at <a href="https://dshworks.github.io/llms.txt">dshworks.github.io/llms.txt</a>.</sub>
+<sub>AI agents / LLMs: the org index lives at <a href="https://dsh.works/llms.txt">dsh.works/llms.txt</a>.</sub>
 
 ## Pages
 
@@ -94,6 +94,7 @@ Use these notes when a tutorial fails and you suspect the harness changed undern
 7. **Repo descriptions lag migrations; trust the manifest.** Seen in the wild 2026-08-13: `AshesofPlato/whale-girl`'s description still teaches the removed `.dsh-plugin` + config.yaml install while the repo itself already migrated to `dsh.bundle` (its README installs via `dsh plugin add github:...`). Verify against package.json, not the repo card.
 8. **`dsh.plugin.json` is not a harness manifest.** The `omdsh-dev` plugin family ships one in every repo root; nothing in the harness source reads that file. It is third-party metadata for better-sidebar's own tab registry. The real install path is still `dsh.bundle` in package.json.
 9. **npm versions are fragmented across the monorepo.** The harness repo tags `0.1.0-rc.5` while published subpackages disagree (`dsh-agent@0.1.0-rc.6`, `dsh@0.0.1-rc.5`, Cordis at 4.x). Anchor compat claims to the harness release tag, not to whichever dependency version npm shows you.
+10. **The newest release is not what `npx` installs.** Checked 2026-08-20: `@deepseek-ai/dsh` has `0.1.0-rc.8` published — on the `next` dist-tag, since 2026-08-19 — while `latest` still points at `0.1.0-rc.7`. So `npx @deepseek-ai/dsh` gives you rc.7 on a day when rc.8 has release notes, a GitHub tag, and a changelog. A plugin author reading the announcement and a user running the install line are on different versions. `npm view @deepseek-ai/dsh dist-tags` is the only honest answer to "what will I get"; use `@next` explicitly if you mean rc.8.
 
 ## Skills: Claude-compatible
 
@@ -139,7 +140,7 @@ A theme registration API exists (`packages/client/ui-theme`), but third-party th
 ## Links
 
 - Official: [repo](https://github.com/deepseek-ai/deepseek-harness) · [docs](https://deepseek-harness.github.io/deepseek-harness/en/guide) · [landing](https://www.deepseek.com/harness/en/) · [Cordis paper](https://github.com/cordiverse/paper) · [Discord](https://discord.gg/Ycq5dCaS4)
-- Community: [dshworks.github.io](https://dshworks.github.io) · [awesome-dsh-plugins](https://github.com/dshworks/awesome-dsh-plugins) · [awesome-dsh-themes](https://github.com/dshworks/awesome-dsh-themes)
+- Community: [dsh.works](https://dsh.works) · [awesome-dsh-plugins](https://github.com/dshworks/awesome-dsh-plugins) · [awesome-dsh-themes](https://github.com/dshworks/awesome-dsh-themes) · [dshthemes.com](https://dshthemes.com)
 - Badge: the official opt-in "powered by dsh" badge lives at `packages/skill/skill-badge` (brand blue `#4D6BFE`; don't restyle it, the asset says so).
 
 ## License
