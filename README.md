@@ -26,13 +26,53 @@ PRs with verified corrections welcome. Not affiliated with DeepSeek.
 
 `build/` (writing a plugin) and `run/` (running dsh for other people) are the next two tracks. They are empty today; this table is the honest state of the repo.
 
+## What changed in 0.1.0-rc.8
+
+`0.1.0-rc.8` shipped 2026-08-19, two releases past the pages above. These four
+notes are **read from the rc.8 source tree, not re-run on a machine** — that
+distinction is the whole point of this repo, so it is stated rather than
+blurred. The pages themselves still say rc.6 until somebody re-runs them.
+
+- **`dsh web` now opens your browser.** It waits for the whole Loader tree to
+  settle, then hands the canonical host URL to the OS. `--no-open` turns it
+  off, and a non-empty `SSH_CONNECTION` or `SSH_TTY` suppresses it
+  automatically, because over SSH the forwarded address belongs to your client.
+  A failed handoff prints why and leaves the server running.
+  (`apps/cli/reference/README.md`)
+- **The Claude Code and Codex subagents are separate optional Bundles now.**
+  `dsh plugin --profile <name> add @deepseek-ai/dsh-subagent-codex` — and the
+  trap: **bundle membership is fixed at Profile start.** Adding or removing one
+  changes the manifest on disk while the running Profile keeps the set it
+  booted with, so you must restart that Profile. Ordinary edits to the Profile
+  or to the home `cordis.patch.yml` still hot-reload; this one does not. On the
+  next start each Bundle registers a *dormant* provider, and a copied Preset
+  still has to enable the matching tool row itself.
+  (`apps/cli/reference/README.md`, `packages/subagent/subagent-claude-code/README.md`)
+- **`SubagentReportDelivery` renamed `'wakeup'` to `'next-step'`**, and the
+  semantics moved with it: it now uses `Agent.steer()`, waking an idle parent
+  or joining a running parent's nearest step boundary. Anything that passed the
+  string `'wakeup'` breaks. (`docs/subsystems/subagent.md`)
+- **The SQLite session store changed format incompatibly** for read, write, and
+  fork performance. Budget for it before upgrading a machine that has sessions
+  you care about. (release notes; `docs/subsystems/persistence.md`)
+
+Two things the pages below depend on that did **not** move between rc.6 and
+rc.8, checked file by file: the `/api` browser-trust fence
+(`packages/client/connection/src/{index,api-request-trust,loopback-hostname}.ts`
+are byte-identical) and the bundle-vs-plain-dependency rules in
+`docs/user/develop/basic/publish.md`. So the 403 page and the composition model
+below still hold.
+
 ## Start in 60 seconds
 
 ```sh
 npx @deepseek-ai/dsh web
 ```
 
-The Web UI comes up at `http://127.0.0.1:3080`. Set the API key in Settings > Models (hot-applies, no restart). To sanity-check a composition without booting: `dsh --profile <name> --dump-config`.
+The Web UI comes up at `http://127.0.0.1:3080` — and from rc.8 on, in your
+browser, unless you pass `--no-open`. Set the API key in Settings > Models
+(hot-applies, no restart). To sanity-check a composition without booting:
+`dsh --profile <name> --dump-config`.
 
 ## When to use, when to skip
 
