@@ -113,7 +113,7 @@ Rules: `<name>/SKILL.md` directory bundles or flat `<name>.md` files; **no neste
 
 ## Bring your Claude Code hooks
 
-dsh ships an official bridge that runs an existing `hooks.json` faithfully:
+dsh ships an official bridge that runs an existing `hooks.json` faithfully. *2026-10-18:* on 0.2.0 it comes with the CLI; from 0.2.1 install it with its protocol peer, both pinned to your dsh version, or it never loads ([step 4](start/coming-from-claude-code.md#five-things-to-do-in-the-first-ten-minutes)):
 
 ```yaml
 - dsh-hooks-claude-code:
@@ -128,7 +128,7 @@ Limits (as shipped): only `type: "command"` shell hooks run; `http` / `mcp_tool`
 
 A Codex bridge exists too: regex-only matchers, snake_case payloads, only blocking decisions honored.
 
-Native alternative: the harness's own typed interception points (`tools/pre-execute`, `ctx.tools.guard()`, `agent/turn-stopping`, and friends) are the canonical surface; the bridges exist for compatibility (`packages/hooks/README.md`).
+Native alternative: the harness's own typed interception points (`tools/pre-execute`, `ctx.tools.guard()`, `agent/turn-stopping`, and friends) are the canonical surface; the bridges exist for compatibility (`packages/hooks/README.md`; `packages/experimental/README.md` from 0.2.1).
 
 ## Themes: the gap
 
