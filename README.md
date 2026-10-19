@@ -2,7 +2,7 @@
 
 Verified field notes for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (`dsh`), DeepSeek's agent harness. Traps, skills, hooks, profiles.
 
-**Every claim here was tested against a real run, with source paths included so you can re-verify.** Each page states the version and date it was verified against; this README's notes are from `0.1.0-rc.5` (2026-08-13), the pages below from `0.1.0-rc.6` (2026-08-15). **Structural re-check 2026-08-25 against `dsh-v0.1.1-rc.2`: all 32 cited source paths still resolve, and traps 9 and 10 were re-run** &mdash; 10 no longer reproduces and says so in place. The behavioural traps have not been re-run against rc.2 and still carry their original dates; a version bump without that would be the dishonest half. dsh is a developer preview and the team promises compatibility-breaking changes, so treat everything here as dated, not eternal.
+**Every claim here was tested against a real run, with source paths included so you can re-verify.** Each page states the version and date it was verified against; this README's notes are from `0.1.0-rc.5` (2026-08-13), the pages below from `0.1.0-rc.6` (2026-08-15). **Structural re-check 2026-08-25 against `dsh-v0.1.1-rc.2`: all 32 cited source paths still resolve, and traps 9 and 10 were re-run** &mdash; 10 no longer reproduces and says so in place. **Structural re-check 2026-10-19 against `dsh-v0.2.1-rc.2`, npm `latest` since that morning: 37 of the 44 cited paths resolved.** Agent Notes moved to `archived/` and the hooks and badge packages to `packages/experimental/`; those citations are re-pointed in place, and the three that still name the old location say which release it belongs to. The rows that changed were re-checked from a scratch `DSH_HOME` and carry that date. The behavioural traps have not been re-run since and still carry their original dates; a version bump without that would be the dishonest half. dsh is a developer preview and the team promises compatibility-breaking changes, so treat everything here as dated, not eternal.
 
 PRs with verified corrections welcome. Not affiliated with DeepSeek.
 
@@ -85,7 +85,7 @@ Use these notes when a tutorial fails and you suspect the harness changed undern
 
 ## Traps
 
-1. **The `.dsh-plugin` manifest format is dead.** Removed 2026-08-09 with no migration (`.agents/notes/implemented/simplification/2026-08-09-remove-repository-plugin.md`). Any tutorial teaching `.dsh-plugin` or `dsh-plugin-prepare` predates the removal. Current path: `dsh.bundle.patch` in package.json.
+1. **The `.dsh-plugin` manifest format is dead.** Removed 2026-08-09 with no migration (`.agents/notes/archived/simplification/2026-08-09-remove-repository-plugin.md`). Any tutorial teaching `.dsh-plugin` or `dsh-plugin-prepare` predates the removal. Current path: `dsh.bundle.patch` in package.json.
 2. **`--patch` paths must be absolute.** A relative path fails (`docs/user/develop/basic/index.md`).
 3. **Git installs execute code on your machine at install time, outside any sandbox.** The docs say so verbatim. Authors must ship a `prepare` script; users must allowlist the build via `allowBuilds` in the profile's `pnpm-workspace.yaml`, and should pin a commit SHA (`docs/user/develop/basic/publish.md`). This is not a corner case: of the 18 bundle-format plugins verified by [awesome-dsh-plugins](https://github.com/dshworks/awesome-dsh-plugins) on 2026-08-13, only 4 are on npm; the rest install via `dsh plugin --profile <p> add github:owner/repo` (a `#path:/subdir` suffix reaches monorepo subpackages).
 4. **A patch replaces a row's entire `config`, with no deep-merge.** Overriding one field means restating the row's whole config.
@@ -93,8 +93,8 @@ Use these notes when a tutorial fails and you suspect the harness changed undern
 6. **cordis.yml YAML tags:** `!!js` is allowed only under a plugin's `config` and an entry's `disabled`. Never `!js`, never elsewhere.
 7. **Repo descriptions lag migrations; trust the manifest.** Seen in the wild 2026-08-13: `AshesofPlato/whale-girl`'s description still teaches the removed `.dsh-plugin` + config.yaml install while the repo itself already migrated to `dsh.bundle` (its README installs via `dsh plugin add github:...`). Verify against package.json, not the repo card.
 8. **`dsh.plugin.json` is not a harness manifest.** The `omdsh-dev` plugin family ships one in every repo root; nothing in the harness source reads that file. It is third-party metadata for better-sidebar's own tab registry. The real install path is still `dsh.bundle` in package.json.
-9. **npm versions are fragmented across the monorepo.** Still true, with fresher numbers &mdash; re-checked 2026-08-25: the harness tags `dsh-v0.1.1-rc.2` and `@deepseek-ai/dsh` matches it at `0.1.1-rc.2`, but `@deepseek-ai/dsh-agent` is still on `0.1.0-rc.6`, four releases behind. (First recorded 2026-08-13 against tag `0.1.0-rc.5`, when `dsh` itself read `0.0.1-rc.5`.) Anchor compat claims to the harness release tag, not to whichever dependency version npm shows you.
-10. **The newest release is not what `npx` installs.** <sub>**Not reproducing as of 2026-08-25** &mdash; `npm view @deepseek-ai/dsh dist-tags` now returns `{ latest: '0.1.1-rc.2', next: '0.1.1-rc.2' }`, so `latest` is the newest release and `npx` gives you it. Kept because it was real for at least a day and the mechanism that caused it has not gone anywhere: a `next`-only publish is one release-script decision away, and nothing in the repo prevents it. The check below is still the honest one to run.</sub>  
+9. **npm versions are fragmented across the monorepo.** Still true &mdash; re-checked 2026-10-19: `@deepseek-ai/dsh` `latest` is `0.2.1-rc.2`, matching tag `dsh-v0.2.1-rc.2`, but `@deepseek-ai/dsh-agent` `latest` is still `0.1.0-rc.6` (its 0.2.1 build sits on `next`), and `@deepseek-ai/dsh-hooks-claude-code` `latest` is `0.0.1-rc.5`. (Same `dsh-agent` lag on 2026-08-25 at `0.1.1-rc.2`; first recorded 2026-08-13 against tag `0.1.0-rc.5`, when `dsh` itself read `0.0.1-rc.5`.) Anchor compat claims to the harness release tag, not to whichever dependency version npm shows you.
+10. **The newest release is not what `npx` installs.** <sub>**Reproduced again 2026-10-17 to 2026-10-19.** `0.2.1-rc.2` was published 2026-10-17 08:36Z on `next` while `latest` stayed `0.2.0-rc.2`; `latest` caught up on 2026-10-19 (npm's packument `modified` stamp reads 06:29Z that day, with no new version published). Both tags now read `0.2.1-rc.2`, so `npx` gives you the newest release again. A `next`-only publish is one release-script decision away and nothing in the repo prevents it, so the check below is still the honest one to run.</sub>  
     Checked 2026-08-20: `@deepseek-ai/dsh` has `0.1.0-rc.8` published — on the `next` dist-tag, since 2026-08-19 — while `latest` still points at `0.1.0-rc.7`. So `npx @deepseek-ai/dsh` gives you rc.7 on a day when rc.8 has release notes, a GitHub tag, and a changelog. A plugin author reading the announcement and a user running the install line are on different versions. `npm view @deepseek-ai/dsh dist-tags` is the only honest answer to "what will I get"; use `@next` explicitly if you mean rc.8.
 
 ## Skills: Claude-compatible
@@ -113,7 +113,7 @@ Rules: `<name>/SKILL.md` directory bundles or flat `<name>.md` files; **no neste
 
 ## Bring your Claude Code hooks
 
-dsh ships an official bridge that runs an existing `hooks.json` faithfully. *2026-10-18:* on 0.2.0 it comes with the CLI; from 0.2.1 install it with its protocol peer, both pinned to your dsh version, or it never loads ([step 4](start/coming-from-claude-code.md#five-things-to-do-in-the-first-ten-minutes)):
+dsh ships an official bridge that runs an existing `hooks.json` faithfully. *2026-10-19:* `npx` now installs 0.2.1, where the bridge no longer comes with the CLI (on 0.2.0 it did): install it with its protocol peer, both pinned to your dsh version, or it never loads ([step 4](start/coming-from-claude-code.md#five-things-to-do-in-the-first-ten-minutes)):
 
 ```yaml
 - dsh-hooks-claude-code:
@@ -128,7 +128,7 @@ Limits (as shipped): only `type: "command"` shell hooks run; `http` / `mcp_tool`
 
 A Codex bridge exists too: regex-only matchers, snake_case payloads, only blocking decisions honored.
 
-Native alternative: the harness's own typed interception points (`tools/pre-execute`, `ctx.tools.guard()`, `agent/turn-stopping`, and friends) are the canonical surface; the bridges exist for compatibility (`packages/hooks/README.md`; `packages/experimental/README.md` from 0.2.1).
+Native alternative: the harness's own typed interception points (`tools/pre-execute`, `ctx.tools.guard()`, `agent/turn-stopping`, and friends) are the canonical surface; the bridges exist for compatibility (`.agents/notes/archived/feature/2026-06-30-interception-extension-points.md`, under `implemented/` before 0.2.1).
 
 ## Themes: the gap
 
@@ -142,7 +142,7 @@ A theme registration API exists (`packages/client/ui-theme`), but third-party th
 
 - Official: [repo](https://github.com/deepseek-ai/deepseek-harness) · [docs](https://deepseek-harness.github.io/deepseek-harness/en/guide) · [landing](https://www.deepseek.com/harness/en/) · [Cordis paper](https://github.com/cordiverse/paper) · [Discord](https://discord.gg/Ycq5dCaS4)
 - Community: [dsh.works](https://dsh.works) · [awesome-dsh-plugins](https://github.com/dshworks/awesome-dsh-plugins) · [awesome-dsh-themes](https://github.com/dshworks/awesome-dsh-themes) · [dshthemes.com](https://dshthemes.com)
-- Badge: the official opt-in "powered by dsh" badge lives at `packages/skill/skill-badge` (brand blue `#4D6BFE`; don't restyle it, the asset says so).
+- Badge: the official opt-in "powered by dsh" badge lives at `packages/experimental/skill-badge` from 0.2.1 (`packages/skill/skill-badge` before); install it and insert its row, the default composition leaves it out (brand blue `#4D6BFE`; don't restyle it, the asset says so).
 
 ## License
 

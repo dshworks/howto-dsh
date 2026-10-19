@@ -45,7 +45,7 @@ Three ways, in the order dsh resolves them (`packages/credentials/credentials-lo
 
 ![Settings > Models](../assets/first-hour/04-settings-models.jpg)
 
-While you are in Settings, note two things and touch nothing: General shows the default agent preset ("Standard mode") and the default permission ("Workspace Write"); Agent presets shows the four shipped presets (Standard, Code, Minimal, Creator) as cards you can view or copy but not edit. That is the whole knob surface for today.
+While you are in Settings, note two things and touch nothing: General shows the default agent preset ("Standard mode") and the default permission ("Workspace Write"); Agent presets shows the four shipped presets (Standard, Code, Minimal, Creator) as cards you can view or copy but not edit. That is the whole knob surface for today. *2026-10-19, 0.2.1-rc.2, not re-run here:* the second preset is now PTC mode (id `ptc`, renamed from `code` on 2026-08-25).
 
 ![Settings > Agent presets](../assets/first-hour/06-settings-agent-presets.jpg)
 
