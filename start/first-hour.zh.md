@@ -45,7 +45,7 @@ npx @deepseek-ai/dsh web
 
 ![Settings > Models](../assets/first-hour/04-settings-models.jpg)
 
-既然在 Settings 里，顺便看两样东西，什么都别动：General 显示默认 agent 预设（"Standard mode"）和默认权限（"Workspace Write"）；Agent presets 显示四个自带预设（Standard、Code、Minimal、Creator）的卡片，可以查看、可以复制，不能编辑。今天要碰的旋钮就这么多。
+既然在 Settings 里，顺便看两样东西，什么都别动：General 显示默认 agent 预设（"Standard mode"）和默认权限（"Workspace Write"）；Agent presets 显示四个自带预设（Standard、Code、Minimal、Creator）的卡片，可以查看、可以复制，不能编辑。今天要碰的旋钮就这么多。*2026-10-19，0.2.1-rc.2，本页未重跑：*第二个预设现在叫 PTC mode（id 是 `ptc`，2026-08-25 从 `code` 改名）。
 
 ![Settings > Agent presets](../assets/first-hour/06-settings-agent-presets.jpg)
 
