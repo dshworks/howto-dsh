@@ -16,6 +16,7 @@ PRs with verified corrections welcome. Not affiliated with DeepSeek.
 |---|---|---|
 | Your first hour: boot, a real repo with two failing tests, the diff, the trajectory, the bill | [first-hour.md](start/first-hour.md) | [first-hour.zh.md](start/first-hour.zh.md) |
 | Coming from Claude Code or Codex: what carries over, what is renamed, what does not exist | [coming-from-claude-code.md](start/coming-from-claude-code.md) | [coming-from-claude-code.zh.md](start/coming-from-claude-code.zh.md) |
+| Raise a fish (养鱼) that only takes orders from you: QQ, WeChat and Feishu plugins, who they answer by default, how to lock them to you | [raise-a-fish-safely.md](start/raise-a-fish-safely.md) | [raise-a-fish-safely.zh.md](start/raise-a-fish-safely.zh.md) |
 
 **fix/** — one symptom per page, reproduced before it was written.
 
