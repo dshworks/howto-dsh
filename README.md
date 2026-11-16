@@ -24,6 +24,7 @@ PRs with verified corrections welcome. Not affiliated with DeepSeek.
 |---|---|---|
 | Boot fails with a wall of `AggregateError` | [boot-fails-with-a-wall-of-aggregateerror.md](fix/boot-fails-with-a-wall-of-aggregateerror.md) | [.zh.md](fix/boot-fails-with-a-wall-of-aggregateerror.zh.md) |
 | Every `/api/*` request returns 403 | [every-api-call-returns-403.md](fix/every-api-call-returns-403.md) | [.zh.md](fix/every-api-call-returns-403.zh.md) |
+| `dsh plugin add` installs the release before the one you just published | [plugin-add-installs-the-previous-release.md](fix/plugin-add-installs-the-previous-release.md) | [.zh.md](fix/plugin-add-installs-the-previous-release.zh.md) |
 
 `build/` (writing a plugin) and `run/` (running dsh for other people) are the next two tracks. They are empty today; this table is the honest state of the repo.
 
