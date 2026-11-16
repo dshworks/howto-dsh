@@ -12,7 +12,11 @@
 
 - 仓库：`github.com/deepseek-ai/deepseek-harness`。npm：`@deepseek-ai/dsh`。文档：`deepseek-harness.github.io/deepseek-harness`。
 - 不是它：PyPI 上的 `dsh`、`dscode`、任何没有 `@deepseek-ai/` 前缀却叫 `deepseek-harness` 的 npm 包，以及任何标题里写着"官方"但域名不是 `deepseek.com` 的站点。
-- 没有官方插件市场，没有官方桌面端，没有官方 TUI。凡是提供这些的都是社区作品，包括我们的。
+- 2026-08-15 时没有官方插件市场、没有官方桌面端、没有官方 TUI。之后有两项变了：
+  - 官方桌面端已于 2026-09-29 发布，即 harness 里的 `apps/desktop`；`dsh --profile desktop` 会拒绝运行，提示该 profile 由 Electron 应用独占管理。
+  - 2026-11-05 DeepSeek 表示正在建设官方插件市场（[原文](https://mp.weixin.qq.com/s/xqyrRaiBpIcf0jeJzP7W0g)），目前尚未上线。
+  - 截至 0.2.2-rc.1 仍没有官方 TUI；`dsh --help` 里的 `dsh tui` 只是自定义 profile 的示例名。
+  - 除此之外自称官方的都是社区作品，包括我们的。
 
 ## 1. 启动
 
