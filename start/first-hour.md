@@ -12,7 +12,11 @@ By the end you will have booted dsh, pointed it at a tiny repo with two failing 
 
 - Repo: `github.com/deepseek-ai/deepseek-harness`. npm: `@deepseek-ai/dsh`. Docs: `deepseek-harness.github.io/deepseek-harness`.
 - Not it: PyPI `dsh`, `dscode`, any npm package called `deepseek-harness` without the `@deepseek-ai/` scope, and any site with "official" in the tagline that is not `deepseek.com`.
-- There is no official marketplace, no official desktop app, no official TUI. Anything offering those is community work, ours included.
+- On 2026-08-15 there was no official marketplace, no official desktop app and no official TUI. Two of those have changed since:
+  - The official desktop app shipped on 2026-09-29. It is `apps/desktop` in the harness, and `dsh --profile desktop` refuses with "managed exclusively by the Electron application".
+  - On 2026-11-05 DeepSeek said it is building an official plugin market ([post](https://mp.weixin.qq.com/s/xqyrRaiBpIcf0jeJzP7W0g)). It has not shipped yet.
+  - Still no official TUI as of 0.2.2-rc.1. The `dsh tui` in `dsh --help` is an example name for a custom profile.
+  - Anything else claiming to be official is community work, ours included.
 
 ## 1. Boot
 
